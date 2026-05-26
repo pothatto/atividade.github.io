@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Inicial</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+
+            /* Fundo em cores pastéis */
+            background: linear-gradient(
+                135deg,
+                #ffd6e0,
+                #d6f0ff,
+                #fff4c2,
+                #d9ffd6
+            );
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255,255,255,0.7);
+            padding: 50px;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            color: #444;
+        }
+
+        .botao {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #ffffff;
+            color: #444;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 12px;
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .botao:hover {
+            transform: scale(1.05);
+            background: #f8f8f8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Bem-vindo</h1>
+
+        <!-- Troque o link abaixo pelo que quiser -->
+        <a href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZ1eO4MtYPezU52d5NYtxUE8vTPmXEE9YIW8qemPcEma1mEvOjp3GnLec&s=10" class="botao">
+            Entrar
+        </a>
+
+    </div>
+
+</body>
+
+</html>
