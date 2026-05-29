@@ -1,83 +1,174 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Inicial</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flexbox Responsivo</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
-        }
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-        body {
-            height: 100vh;
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600&display=swap" rel="stylesheet">
 
-            /* Fundo em cores pastéis */
-            background: linear-gradient(
-                135deg,
-                #ffd6e0,
-                #d6f0ff,
-                #fff4c2,
-                #d9ffd6
-            );
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .container {
-            text-align: center;
-            background: rgba(255,255,255,0.7);
-            padding: 50px;
-            border-radius: 20px;
-            backdrop-filter: blur(5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        h1 {
-            margin-bottom: 30px;
-            color: #444;
-        }
-
-        .botao {
-            display: inline-block;
-            padding: 15px 40px;
-            background: #ffffff;
-            color: #444;
-            text-decoration: none;
-            font-size: 18px;
-            font-weight: bold;
-            border-radius: 12px;
-            transition: 0.3s;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-
-        .botao:hover {
-            transform: scale(1.05);
-            background: #f8f8f8;
-        }
-    </style>
+  <!-- CSS externo -->
+  <link rel="stylesheet" href="estilo_responsivo.css">
 </head>
 
 <body>
 
-    <div class="container">
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header__inner">
 
-        <h1>Bem-vindo</h1>
+      <a href="#" class="header__brand">
+        <div class="header__mark">
+          <svg viewBox="0 0 18 18">
+            <polyline points="2,14 7,8 11,11 16,4"/>
+            <circle cx="16" cy="4" r="1.5" fill="white" stroke="none"/>
+          </svg>
+        </div>
+        <span class="header__name">Flexibilidade</span>
+      </a>
 
-        <!-- Troque o link abaixo pelo que quiser -->
-        <a href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZ1eO4MtYPezU52d5NYtxUE8vTPmXEE9YIW8qemPcEma1mEvOjp3GnLec&s=10" class="botao">
-            Entrar
-        </a>
+      <!-- Menu Mobile -->
+      <button class="hamburger" id="hamburger" aria-label="Abrir menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <!-- Navegação -->
+      <nav class="nav" id="nav">
+        <a href="#" class="nav__link nav__link--active">Início</a>
+        <a href="#cards" class="nav__link">Recursos</a>
+        <a href="#" class="nav__link">Sobre</a>
+        <a href="#" class="nav__link">Blog</a>
+        <a href="#" class="nav__cta">Começar grátis</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+
+    <div class="hero__tag">Flexbox + Media Queries</div>
+
+    <h1 class="hero__title">
+      Design que se <em>adapta</em> a qualquer tela
+    </h1>
+
+    <p class="hero__sub">
+      Horizontal no desktop, vertical no mobile — um layout fluido construído
+      com Flexbox e Media Queries do zero.
+    </p>
+
+    <div class="hero__actions">
+
+      <a href="#cards" class="btn btn--primary">
+        Ver recursos
+      </a>
+
+      <a href="#" class="btn btn--ghost">
+        Ver código-fonte
+      </a>
 
     </div>
 
-</body>
+  </section>
 
+  <!-- CARDS -->
+  <main>
+
+    <section class="section" id="cards">
+
+      <div class="section__header">
+        <p class="section__label">O que você aprende</p>
+        <h2 class="section__title">
+          Três pilares do layout moderno
+        </h2>
+      </div>
+
+      <div class="cards">
+
+        <!-- CARD 1 -->
+        <article class="card">
+
+          <div class="card__accent"></div>
+
+          <span class="card__num">01 — Flexbox</span>
+
+          <h3 class="card__title">
+            Alinhamento com Flexbox
+          </h3>
+
+          <p class="card__text">
+            Use display: flex, justify-content e align-items para
+            posicionar elementos corretamente.
+          </p>
+
+        </article>
+
+        <!-- CARD 2 -->
+        <article class="card">
+
+          <div class="card__accent"></div>
+
+          <span class="card__num">02 — Responsivo</span>
+
+          <h3 class="card__title">
+            Layouts que se adaptam
+          </h3>
+
+          <p class="card__text">
+            Utilize Media Queries para adaptar o layout para
+            celulares e tablets.
+          </p>
+
+        </article>
+
+        <!-- CARD 3 -->
+        <article class="card">
+
+          <div class="card__accent"></div>
+
+          <span class="card__num">03 — UX Mobile</span>
+
+          <h3 class="card__title">
+            Experiência em qualquer dispositivo
+          </h3>
+
+          <p class="card__text">
+            Interfaces modernas funcionam corretamente em
+            smartphones, tablets e desktops.
+          </p>
+
+        </article>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>
+      Feito com Flexbox e Media Queries
+    </p>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    const btn = document.getElementById('hamburger');
+    const nav = document.getElementById('nav');
+
+    btn.addEventListener('click', () => {
+      nav.classList.toggle('open');
+      btn.classList.toggle('open');
+    });
+  </script>
+
+</body>
 </html>
