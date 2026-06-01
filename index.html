@@ -1,174 +1,477 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Flexbox Responsivo</title>
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>One Million Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- CSS externo -->
-  <link rel="stylesheet" href="estilo_responsivo.css">
+  <link rel="stylesheet" href="Estilo.css">
+<style></style>
 </head>
-
 <body>
 
-  <!-- HEADER -->
-  <header class="header">
-    <div class="header__inner">
+<!-- ═══════════════════════════════════════════════════════
+     TELA DE LOGIN
+════════════════════════════════════════════════════════ -->
+<div class="screen" id="loginScreen">
+  <div class="auth-card">
+    <div class="auth-logo">
+      <div class="brand">ONE MILLION</div>
+      <div class="sub">Services</div>
+    </div>
+    <h2>Bem-vindo de volta</h2>
+    <div class="divider-line"></div>
 
-      <a href="#" class="header__brand">
-        <div class="header__mark">
-          <svg viewBox="0 0 18 18">
-            <polyline points="2,14 7,8 11,11 16,4"/>
-            <circle cx="16" cy="4" r="1.5" fill="white" stroke="none"/>
-          </svg>
-        </div>
-        <span class="header__name">Flexibilidade</span>
-      </a>
+    <div class="form-group">
+      <label>E-mail</label>
+      <input type="email" id="loginEmail" placeholder="seu@email.com">
+    </div>
+    <div class="form-group">
+      <label>Senha</label>
+      <input type="password" id="loginPass" placeholder="••••••••">
+    </div>
 
-      <!-- Menu Mobile -->
-      <button class="hamburger" id="hamburger" aria-label="Abrir menu">
-        <span></span>
-        <span></span>
-        <span></span>
+    <button class="btn-gold" onclick="doLogin()">Acessar Plataforma</button>
+
+    <div class="auth-switch">
+      Não tem conta? <a onclick="showRegister()">Criar conta gratuita</a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     TELA DE CADASTRO
+════════════════════════════════════════════════════════ -->
+<div class="screen hidden" id="registerScreen">
+  <div class="auth-card">
+    <div class="auth-logo">
+      <div class="brand">ONE MILLION</div>
+      <div class="sub">Services — Cadastro</div>
+    </div>
+    <h2>Criar sua conta</h2>
+    <div class="divider-line"></div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Nome</label>
+        <input type="text" placeholder="Seu nome">
+      </div>
+      <div class="form-group">
+        <label>Sobrenome</label>
+        <input type="text" placeholder="Sobrenome">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>E-mail corporativo</label>
+      <input type="email" placeholder="email@empresa.com">
+    </div>
+    <div class="form-group">
+      <label>Telefone</label>
+      <input type="tel" placeholder="(00) 00000-0000">
+    </div>
+    <div class="form-group">
+      <label>Tipo de serviço</label>
+      <select>
+        <option value="">Selecione uma área…</option>
+        <option>Consultoria Empresarial</option>
+        <option>Gestão Financeira</option>
+        <option>Marketing & Branding</option>
+        <option>Transformação Digital</option>
+        <option>Recursos Humanos</option>
+      </select>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Senha</label>
+        <input type="password" placeholder="••••••••">
+      </div>
+      <div class="form-group">
+        <label>Confirmar</label>
+        <input type="password" placeholder="••••••••">
+      </div>
+    </div>
+
+    <button class="btn-gold" onclick="doRegister()">Criar Conta</button>
+
+    <div class="auth-switch">
+      Já tem conta? <a onclick="showLogin()">Fazer login</a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     APLICAÇÃO PRINCIPAL
+════════════════════════════════════════════════════════ -->
+<div id="app">
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-brand">
+      ONE MILLION
+      <span>Services</span>
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="#" onclick="scrollTo('home')" class="active" id="nav-home">Início</a></li>
+      <li><a href="#" onclick="scrollTo('servicos')" id="nav-servicos">Serviços</a></li>
+      <li><a href="#" onclick="scrollTo('sobre')" id="nav-sobre">Sobre</a></li>
+      <li><a href="#" onclick="scrollTo('contato')" id="nav-contato">Contato</a></li>
+    </ul>
+
+    <div class="nav-user">
+      <div class="nav-avatar" id="navAvatar">U</div>
+      <button class="btn-logout" onclick="doLogout()">Sair</button>
+      <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
       </button>
-
-      <!-- Navegação -->
-      <nav class="nav" id="nav">
-        <a href="#" class="nav__link nav__link--active">Início</a>
-        <a href="#cards" class="nav__link">Recursos</a>
-        <a href="#" class="nav__link">Sobre</a>
-        <a href="#" class="nav__link">Blog</a>
-        <a href="#" class="nav__cta">Começar grátis</a>
-      </nav>
-
     </div>
-  </header>
+  </nav>
 
-  <!-- HERO -->
-  <section class="hero">
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#" onclick="scrollTo('home');toggleMenu()">Início</a>
+    <a href="#" onclick="scrollTo('servicos');toggleMenu()">Serviços</a>
+    <a href="#" onclick="scrollTo('sobre');toggleMenu()">Sobre</a>
+    <a href="#" onclick="scrollTo('contato');toggleMenu()">Contato</a>
+    <a href="#" onclick="doLogout()">Sair</a>
+  </div>
 
-    <div class="hero__tag">Flexbox + Media Queries</div>
+  <div class="main-area">
 
-    <h1 class="hero__title">
-      Design que se <em>adapta</em> a qualquer tela
-    </h1>
-
-    <p class="hero__sub">
-      Horizontal no desktop, vertical no mobile — um layout fluido construído
-      com Flexbox e Media Queries do zero.
-    </p>
-
-    <div class="hero__actions">
-
-      <a href="#cards" class="btn btn--primary">
-        Ver recursos
-      </a>
-
-      <a href="#" class="btn btn--ghost">
-        Ver código-fonte
-      </a>
-
+    <!-- ── HERO ── -->
+    <div id="home">
+      <section class="hero" style="padding:0; min-height:calc(100vh - 0px);">
+        <div class="hero-grid"></div>
+        <div class="hero-content">
+          <div class="hero-badge">✦ Serviços que Conectam · Soluções que Transformam ✦</div>
+          <h1>
+            Elevando seus<br>
+            <em>Resultados</em> ao<br>
+            próximo nível
+          </h1>
+          <p>
+            A One Million Services oferece consultoria de alto impacto para empresas que buscam excelência, crescimento e transformação duradoura.
+          </p>
+          <div class="hero-btns">
+            <a href="#" class="btn-primary" onclick="scrollTo('servicos')">Nossos Serviços</a>
+            <a href="#" class="btn-outline" onclick="scrollTo('contato')">Fale Conosco</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat">
+              <div class="stat-num">1M+</div>
+              <div class="stat-label">Em negócios conectados</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">500+</div>
+              <div class="stat-label">Clientes atendidos</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">98%</div>
+              <div class="stat-label">Satisfação</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">12</div>
+              <div class="stat-label">Anos de mercado</div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
 
-  </section>
+    <!-- ── SERVIÇOS ── -->
+    <div id="servicos">
+      <section>
+        <div class="section-label reveal">◆ O que oferecemos</div>
+        <div class="section-title reveal">Soluções <em>completas</em><br>para seu negócio</div>
+        <p class="section-desc reveal">Do planejamento estratégico à execução, entregamos resultados mensuráveis em cada etapa da sua jornada empresarial.</p>
 
-  <!-- CARDS -->
-  <main>
+        <div class="services-grid">
+          <div class="service-card reveal">
+            <span class="service-icon">🤝</span>
+            <h3>Consultoria Empresarial</h3>
+            <p>Diagnóstico completo e planejamento estratégico personalizado para alavancar os resultados da sua empresa.</p>
+            <span class="service-tag">Estratégia</span>
+          </div>
+          <div class="service-card reveal">
+            <span class="service-icon">📊</span>
+            <h3>Gestão Financeira</h3>
+            <p>Controle, planejamento e otimização dos recursos financeiros com visão de longo prazo e segurança patrimonial.</p>
+            <span class="service-tag">Finanças</span>
+          </div>
+          <div class="service-card reveal">
+            <span class="service-icon">🚀</span>
+            <h3>Transformação Digital</h3>
+            <p>Modernização de processos e implementação de tecnologias que colocam sua empresa à frente da concorrência.</p>
+            <span class="service-tag">Tecnologia</span>
+          </div>
+          <div class="service-card reveal">
+            <span class="service-icon">🎯</span>
+            <h3>Marketing & Branding</h3>
+            <p>Construção de marca poderosa e estratégias de marketing que geram conexão real com seu público-alvo.</p>
+            <span class="service-tag">Marketing</span>
+          </div>
+          <div class="service-card reveal">
+            <span class="service-icon">👥</span>
+            <h3>Gestão de Pessoas</h3>
+            <p>Desenvolvimento de equipes de alta performance, cultura organizacional e liderança estratégica.</p>
+            <span class="service-tag">RH</span>
+          </div>
+          <div class="service-card reveal">
+            <span class="service-icon">🌐</span>
+            <h3>Expansão de Mercado</h3>
+            <p>Identificação de novas oportunidades e suporte completo para a expansão nacional e internacional do seu negócio.</p>
+            <span class="service-tag">Crescimento</span>
+          </div>
+        </div>
+      </section>
+    </div>
 
-    <section class="section" id="cards">
+    <!-- ── SOBRE ── -->
+    <div id="sobre">
+      <section style="max-width:1200px; margin:0 auto;">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center;">
+          <div class="about-visual reveal">
+            <div class="about-box">
+              <div class="about-accent">🤝</div>
+              <div class="about-monogram">1M</div>
+              <div class="about-tagline">Serviços que Conectam · Soluções que Transformam</div>
+            </div>
+          </div>
+          <div class="reveal">
+            <div class="section-label">◆ Quem somos</div>
+            <div class="section-title">A empresa que <em>transforma</em> conexões em resultados</div>
+            <p class="section-desc">
+              Fundada com a missão de conectar empresas às melhores soluções do mercado, a One Million Services atua com excelência, ética e comprometimento com os resultados dos nossos clientes.
+            </p>
+            <div class="values-list">
+              <div class="value-item">
+                <div class="value-num">01</div>
+                <div>
+                  <h4>Excelência</h4>
+                  <p>Entregamos sempre acima das expectativas, com qualidade premium em cada projeto.</p>
+                </div>
+              </div>
+              <div class="value-item">
+                <div class="value-num">02</div>
+                <div>
+                  <h4>Conexão</h4>
+                  <p>Construímos pontes entre empresas, talentos e oportunidades de forma estratégica.</p>
+                </div>
+              </div>
+              <div class="value-item">
+                <div class="value-num">03</div>
+                <div>
+                  <h4>Transformação</h4>
+                  <p>Não apenas consultamos — transformamos negócios e geramos impacto real e duradouro.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
 
-      <div class="section__header">
-        <p class="section__label">O que você aprende</p>
-        <h2 class="section__title">
-          Três pilares do layout moderno
-        </h2>
+    <!-- ── CONTATO ── -->
+    <div id="contato">
+      <section>
+        <div class="contact-inner">
+          <div class="section-label reveal">◆ Entre em contato</div>
+          <div class="section-title reveal">Vamos construir algo <em>extraordinário</em> juntos</div>
+
+          <div class="contact-grid">
+            <div class="reveal">
+              <div class="contact-info">
+                <h3>Fale com nossos especialistas</h3>
+                <p>Nossa equipe está pronta para entender os desafios do seu negócio e apresentar as melhores soluções para você.</p>
+
+                <div class="contact-item">
+                  <div class="contact-item-icon">📍</div>
+                  <div class="contact-item-text">
+                    <label>Endereço</label>
+                    <span>Joinville, Santa Catarina — Brasil</span>
+                  </div>
+                </div>
+                <div class="contact-item">
+                  <div class="contact-item-icon">📞</div>
+                  <div class="contact-item-text">
+                    <label>Telefone</label>
+                    <span>(47) 99999-0000</span>
+                  </div>
+                </div>
+                <div class="contact-item">
+                  <div class="contact-item-icon">✉️</div>
+                  <div class="contact-item-text">
+                    <label>E-mail</label>
+                    <span>contato@onemillionservices.com.br</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="contact-form reveal">
+              <h3>Enviar mensagem</h3>
+              <div id="formSuccess" class="form-success">
+                ✦ Mensagem enviada com sucesso!<br>
+                <span style="color:var(--text-muted); font-size:.75rem;">Retornaremos em até 24 horas.</span>
+              </div>
+              <div id="contactFormFields">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Nome</label>
+                    <input type="text" placeholder="Seu nome">
+                  </div>
+                  <div class="form-group">
+                    <label>Empresa</label>
+                    <input type="text" placeholder="Nome da empresa">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>E-mail</label>
+                  <input type="email" placeholder="seu@email.com">
+                </div>
+                <div class="form-group">
+                  <label>Área de interesse</label>
+                  <select>
+                    <option value="">Selecione…</option>
+                    <option>Consultoria Empresarial</option>
+                    <option>Gestão Financeira</option>
+                    <option>Transformação Digital</option>
+                    <option>Marketing & Branding</option>
+                    <option>Gestão de Pessoas</option>
+                    <option>Expansão de Mercado</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Mensagem</label>
+                  <textarea rows="4" style="width:100%;padding:13px 16px;background:var(--dark-4);border:1px solid rgba(200,168,75,.2);border-radius:2px;color:var(--white);font-family:'Montserrat',sans-serif;font-size:.85rem;outline:none;resize:vertical;transition:border-color .3s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='rgba(200,168,75,.2)'" placeholder="Descreva brevemente seu projeto ou necessidade…"></textarea>
+                </div>
+                <button class="btn-gold" onclick="sendContact()">Enviar Mensagem</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </div><!-- /main-area -->
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="name">ONE MILLION</div>
+        <div class="tagline">Services</div>
+        <p>Serviços que conectam pessoas e empresas às melhores oportunidades. Soluções que transformam negócios e geram resultados extraordinários.</p>
       </div>
-
-      <div class="cards">
-
-        <!-- CARD 1 -->
-        <article class="card">
-
-          <div class="card__accent"></div>
-
-          <span class="card__num">01 — Flexbox</span>
-
-          <h3 class="card__title">
-            Alinhamento com Flexbox
-          </h3>
-
-          <p class="card__text">
-            Use display: flex, justify-content e align-items para
-            posicionar elementos corretamente.
-          </p>
-
-        </article>
-
-        <!-- CARD 2 -->
-        <article class="card">
-
-          <div class="card__accent"></div>
-
-          <span class="card__num">02 — Responsivo</span>
-
-          <h3 class="card__title">
-            Layouts que se adaptam
-          </h3>
-
-          <p class="card__text">
-            Utilize Media Queries para adaptar o layout para
-            celulares e tablets.
-          </p>
-
-        </article>
-
-        <!-- CARD 3 -->
-        <article class="card">
-
-          <div class="card__accent"></div>
-
-          <span class="card__num">03 — UX Mobile</span>
-
-          <h3 class="card__title">
-            Experiência em qualquer dispositivo
-          </h3>
-
-          <p class="card__text">
-            Interfaces modernas funcionam corretamente em
-            smartphones, tablets e desktops.
-          </p>
-
-        </article>
-
+      <div class="footer-col">
+        <h4>Serviços</h4>
+        <ul>
+          <li><a href="#">Consultoria</a></li>
+          <li><a href="#">Finanças</a></li>
+          <li><a href="#">Digital</a></li>
+          <li><a href="#">Marketing</a></li>
+          <li><a href="#">RH</a></li>
+        </ul>
       </div>
-
-    </section>
-
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <p>
-      Feito com Flexbox e Media Queries
-    </p>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="#">Sobre nós</a></li>
+          <li><a href="#">Nossa equipe</a></li>
+          <li><a href="#">Casos de sucesso</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Carreiras</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacidade</a></li>
+          <li><a href="#">Termos de uso</a></li>
+          <li><a href="#">Cookies</a></li>
+          <li><a href="#">LGPD</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 One Million Services. Todos os direitos reservados.</p>
+      <div class="slogan">Serviços que conectam · Soluções que transformam</div>
+    </div>
   </footer>
 
-  <!-- JAVASCRIPT -->
-  <script>
-    const btn = document.getElementById('hamburger');
-    const nav = document.getElementById('nav');
+</div><!-- /app -->
 
-    btn.addEventListener('click', () => {
-      nav.classList.toggle('open');
-      btn.classList.toggle('open');
+<script>
+  /* ── AUTH ──────────────────────────────────────── */
+  function showRegister() {
+    document.getElementById('loginScreen').classList.add('hidden');
+    document.getElementById('registerScreen').classList.remove('hidden');
+  }
+  function showLogin() {
+    document.getElementById('registerScreen').classList.add('hidden');
+    document.getElementById('loginScreen').classList.remove('hidden');
+  }
+
+  function doLogin() {
+    const email = document.getElementById('loginEmail').value.trim();
+    const pass  = document.getElementById('loginPass').value.trim();
+    if (!email || !pass) { alert('Preencha e-mail e senha.'); return; }
+    const initial = email[0].toUpperCase();
+    document.getElementById('navAvatar').textContent = initial;
+    document.getElementById('loginScreen').classList.add('hidden');
+    document.getElementById('app').classList.add('visible');
+    initReveal();
+  }
+
+  function doRegister() {
+    document.getElementById('registerScreen').classList.add('hidden');
+    document.getElementById('app').classList.add('visible');
+    document.getElementById('navAvatar').textContent = 'U';
+    initReveal();
+  }
+
+  function doLogout() {
+    document.getElementById('app').classList.remove('visible');
+    document.getElementById('loginScreen').classList.remove('hidden');
+    document.getElementById('loginEmail').value = '';
+    document.getElementById('loginPass').value = '';
+  }
+
+  /* ── NAV ───────────────────────────────────────── */
+  function scrollTo(id) {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    // update active link
+    ['home','servicos','sobre','contato'].forEach(s => {
+      const a = document.getElementById('nav-' + s);
+      if (a) a.classList.toggle('active', s === id);
     });
-  </script>
+    return false;
+  }
 
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  /* ── CONTACT FORM ──────────────────────────────── */
+  function sendContact() {
+    document.getElementById('contactFormFields').style.display = 'none';
+    document.getElementById('formSuccess').classList.add('show');
+    setTimeout(() => {
+      document.getElementById('contactFormFields').style.display = 'block';
+      document.getElementById('formSuccess').classList.remove('show');
+    }, 4000);
+  }
+
+  /* ── SCROLL REVEAL ─────────────────────────────── */
+  function initReveal() {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  }
+</script>
 </body>
 </html>
